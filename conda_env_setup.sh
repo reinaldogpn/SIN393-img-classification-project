@@ -2,7 +2,7 @@
 
 ENV_NAME="env-proj1-393-py38"
 
-CONDA_PACKS=(
+CONDA_PACKAGES=(
   scikit-learn==1.1.3
   scikit-image==0.19.3
   matplotlib==3.6.0
@@ -19,7 +19,7 @@ SEM_COR='\e[0m'
 
 conda create -yq -n $ENV_NAME python=3.8
 
-for package in ${CONDA_PACKS[@]}; do
+for package in ${CONDA_PACKAGES[@]}; do
   conda install -yq -n $ENV_NAME -c conda-forge $package
 done
 
