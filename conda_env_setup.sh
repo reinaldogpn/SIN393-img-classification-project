@@ -24,12 +24,15 @@ SEM_COR='\e[0m'
 
 # ----------------------------------------------------------------------------- #
 
+# Atualiza o conda
+# conda update -n base -c defaults conda
+
 # Cria o ambiente conda
 conda create -yq -n $ENV_NAME python=$PY_VER
 
 # Instala os pacotes
 for package in ${CONDA_PACKS[@]}; do
-  conda install -y -n $ENV_NAME -c conda-forge $package
+  conda install -yq -n $ENV_NAME -c conda-forge $package
 done
 
 # Testa se o ambiente conda foi criado
