@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+# Conda env name
 ENV_NAME="env-proj1-393-py38"
 
+# Packages
 CONDA_PACKAGES=(
   scikit-learn==1.1.3
   scikit-image==0.19.3
@@ -11,6 +13,7 @@ CONDA_PACKAGES=(
   notebook==6.5.1
 )
 
+# Font colors
 VERDE='\e[1;92m'
 AMARELO='\e[1;93m'
 SEM_COR='\e[0m'
