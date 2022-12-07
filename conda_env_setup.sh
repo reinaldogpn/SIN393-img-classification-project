@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-# Conda env name
+# Nome do ambiente conda
 ENV_NAME="env-proj1-393-py38"
 
-# Packages
-CONDA_PACKAGES=(
+# Versão do python
+PY_VER=3.8
+
+# Pacotes que serão instalados
+CONDA_PACKS=(
   scikit-learn==1.1.3
   scikit-image==0.19.3
   matplotlib==3.6.0
@@ -13,17 +16,25 @@ CONDA_PACKAGES=(
   notebook==6.5.1
 )
 
-# Font colors
+# Cores de fonte
 VERDE='\e[1;92m'
 AMARELO='\e[1;93m'
+VERMELHO='\e[1;91m'
 SEM_COR='\e[0m'
 
 # ----------------------------------------------------------------------------- #
 
-conda create -yq -n $ENV_NAME python=3.8
+# Cria o ambiente conda
+conda create -yq -n $ENV_NAME python=$PY_VER
 
-for package in ${CONDA_PACKAGES[@]}; do
-  conda install -yq -n $ENV_NAME -c conda-forge $package
+# Instala os pacotes
+for package in ${CONDA_PACKS[@]}; do
+  conda install -y -n $ENV_NAME -c conda-forge $package
 done
 
-echo -e "${VERDE}[INFO] - Ambiente conda configurado, para utilizar, use ${AMARELO}'conda activate $ENV_NAME'${VERDE}.${SEM_COR}"
+# Testa se o ambiente conda foi criado
+if conda env list | grep $ENV_NAME; then
+  echo -e "${VERDE}[INFO] - Ambiente conda configurado. Para utilizar, use o comando: ${AMARELO}conda activate $ENV_NAME.${SEM_COR}"
+else
+  echo -e "${VERMELHO}[ERROR] - Falha ao criar o ambiente conda.${SEM_COR}"
+fi
