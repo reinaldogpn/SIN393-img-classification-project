@@ -24,20 +24,34 @@ SEM_COR='\e[0m'
 
 # ----------------------------------------------------------------------------- #
 
-# Atualiza o conda
-# conda update -n base -c defaults conda
+# Testa se o anaconda e o pip estão instalados
+if ! conda info | grep -qi 'active environment'; then
+  echo -e "${VERMELHO}[ERROR] - O Anaconda não está instalado. Faça o download em: https://www.anaconda.com/products/distribution, instale e tente novamente.${SEM_COR}"
+  exit 1
+elif ! dpkg -l | grep -q python3-pip; then
+  echo -e "${VERMELHO}[ERROR] - Um pacote necessário não está instalado. Instale o " python3-pip " e tente novamente.${SEM_COR}"
+  exit 1
+else
+  echo -e "${VERDE}[INFO] - O sistema atende aos requisitos.${SEM_COR}"
+fi
 
 # Cria o ambiente conda
 conda create -yq -n $ENV_NAME python=$PY_VER
 
-# Instala os pacotes
-for package in ${CONDA_PACKS[@]}; do
-  conda install -yq -n $ENV_NAME -c conda-forge $package
-done
-
-# Testa se o ambiente conda foi criado
-if conda env list | grep $ENV_NAME; then
-  echo -e "${VERDE}[INFO] - Ambiente conda configurado. Para utilizar, use o comando: ${AMARELO}conda activate $ENV_NAME.${SEM_COR}"
+# Testa se o ambiente conda foi criado e instala os pacotes
+if conda env list | grep -q $ENV_NAME; then
+ 
+  # Ativa o ambiente para a instalação dos pacotes
+  source ~/anaconda3/etc/profile.d/conda.sh
+  conda activate $ENV_NAME
+  
+  echo -e "${VERDE}[INFO] - Ambiente conda criado! Instalando pacotes..."
+  for package in ${CONDA_PACKS[@]}; do
+    pip install $package
+  done
 else
   echo -e "${VERMELHO}[ERROR] - Falha ao criar o ambiente conda.${SEM_COR}"
 fi
+
+# Fim
+echo -e "${VERDE}[INFO] - Pacotes instalados. Use o comando '${AMARELO}conda activate $ENV_NAME${VERDE}' para habilitar o ambiente criado.${SEM_COR}"
