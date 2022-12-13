@@ -18,7 +18,7 @@ conda activate env-proj1-393-py38
 ```
 
 ```sh
-pip install sklearn==1.1.3 scikit-image==0.19.3 matplotlib==3.6.0 pandas==1.5.1 seaborn==0.12.1 notebook==6.5.1
+pip install scikit-learn==1.1.3 scikit-image==0.19.3 matplotlib==3.6.0 pandas==1.5.1 seaborn==0.12.1 notebook==6.5.1
 ```
 
 ***
