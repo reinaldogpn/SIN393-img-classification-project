@@ -9,15 +9,15 @@ Projeto de classificação de imagens em Python utilizando as bibliotecas Scikit
 Este programa foi executado em um ambiente [Anaconda](https://www.anaconda.com/products/distribution). 
 O ambiente foi criado utilizando os seguintes comandos:
 
-```sh
+``` bash
 conda create –n env-proj1-393-py38 python=3.8
 ```
 
-```sh
+``` bash
 conda activate env-proj1-393-py38
 ```
 
-```sh
+``` bash
 pip install scikit-learn==1.1.3 scikit-image==0.19.3 matplotlib==3.6.0 pandas==1.5.1 seaborn==0.12.1 notebook==6.5.1
 ```
 
@@ -31,13 +31,13 @@ pip install scikit-learn==1.1.3 scikit-image==0.19.3 matplotlib==3.6.0 pandas==1
 
 * Dar permissão de execução ao arquivo:
 
-```sh
+``` bash
 chmod +x env_setup.sh
 ```
 
 * Executar:
 
-```sh
+``` bash
 ./env_setup.sh
 ```
 
